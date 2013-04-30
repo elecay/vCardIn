@@ -1,13 +1,18 @@
 {
   "name": "CSV Importer",
   "description": "Easy way for importing all your contacts from a .csv file",
-  "launch_path": "/index.html",
+  "type" : "certified",
+  "launch_path": "/csvimporter/index.html",
    "icons": {
-    "128": "/importer.png"
+    "16": "/csvimporter/favicon.png",
+    "128": "/csvimporter/favicon_128.png"
   },
   "developer": {
     "name": "Sebastian Rajo",
-    "url": "http://www.prottotipo.com"
+    "url": "http://www.prottotipo.com/csvimporter/"
+  },
+  "permissions": {
+    "contacts":{ "access": "readwrite" }
   },
   "default_locale": "en"
 }

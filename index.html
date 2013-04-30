@@ -1,54 +1,17 @@
+<!doctype html>
 <html>
   <head>
-    <title>Easy importer</title> 
-          <script>
-            function isInstalled(){	  
-              navigator.mozApps.install("/manifest.webapp");
-            }
-   </script>
-   <script type="text/javascript">
-    oFReader = new FileReader();
-     
-    oFReader.onload = function (oFREvent) {
-      var person = new Contact();
-      person.givenName  = oFREvent.target.result;
-       
-      var saving = navigator.mozContacts.save(person);
-       
-      saving.onsuccess = function () {
-        console.log("New contact saved");
-        // This update the person as it is stored
-        // It includes it's internal unique ID
-        person = saving.result;
-      }
-       
-      saving.onerror = function (err) {
-        console.error(err);
-      }
-    };
-     
-    function loadCsv() {
-      if (document.getElementById("uploadFile").files.length === 0) { return; }
-      var oFile = document.getElementById("uploadFile").files[0];
-      oFReader.readAsText(oFile);
-    }
-    </script>
+    <title>Easy importer</title>
+    <meta charset="utf-8"> 
+    <meta http-equiv="pragma" content="no-cache">
+    <script type="text/javascript" src="/csvimporter/engine.js"></script>
+
   </head>
-  <body onload="isInstalled();">
+  <body>
     Easy importer <br/>
 
-
-    <form name="uploadForm">
-    <table>
-      <tbody>
-        <tr>
-          <td><label id="text"></label></td>
-          <td><input id="uploadFile" type="file" style="width:30%;" name="myCsv" onchange="loadCsv();" /></td>
-        </tr>
-      </tbody>
-    </table>
- 
-    <p><input type="submit" value="Send" /></p>
-  </form>  
+    
   </body>
+
+
 </html>
