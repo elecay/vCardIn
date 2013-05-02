@@ -12,7 +12,7 @@
     "url": "http://www.prottotipo.com/"
   },
   "permissions": {
-    "contacts":{ "access": "readcreate" },
+    "contacts":{ "access": "readwrite" },
     "systemXHR": {},
     "device-storage:sdcard": {
       "access": "readonly"
