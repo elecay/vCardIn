@@ -8,7 +8,7 @@ This project is just starting.
 TODO:
 
 - Field to specified the path of the file inside the SDCARD (root by default)
-- User interface
+- User interface (and some beatiful icons -Pablo Massa?-)
 - Tests
 - Refactoring (make the code a little nicer)
 - Publishing on Firefox Marketplace (for free, of course)

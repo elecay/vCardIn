@@ -1,6 +1,6 @@
 {
-  "name": "CSV Importer",
-  "description": "Easy way for importing all your contacts from a .csv file",
+  "name": "vCard Importer",
+  "description": "A basic FirefoxOS app importer for contacts from a vCard file",
   "type" : "privileged",
   "launch_path": "/index.html",
   "icons": {
@@ -9,7 +9,7 @@
   },
   "developer": {
     "name": "Sebastian Rajo",
-    "url": "http://www.prottotipo.com/csvimporter/"
+    "url": "http://www.prottotipo.com/"
   },
   "permissions": {
     "contacts":{ "access": "readcreate" },
