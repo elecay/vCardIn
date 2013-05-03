@@ -6,27 +6,36 @@
     <title>vCard Importer</title>
     <script defer="" type="text/javascript" src="js/jquery.min.js"></script>
     <script defer="" type="text/javascript" src="js/vCard.js"></script>
-    <script defer="" type="text/javascript" src="js/jquery.percentageloader-0.1.min.js"></script>
 
-    <link href="css/style.css" rel="stylesheet">
-    <style type="text/css">
-    
-  </style>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/progress_activity.css">
+    <link rel="stylesheet" type="text/css" href="css/confirm.css">
   </head>
 
-  <body>
-      <section class="view view-noscroll view-contacts-list" data-state="active" role="region" id="view-contacts-list">
+  <body role="application">
+      <section role="region" id="progress">
+        <form role="dialog" data-type="confirm">
+          <section>
+            <h1>Importing... Please wait...</h1>
+            <p role="status"><span id="porc">0%</span></p>
+            <progress id="progressbar" value="0" max="100"></progress>
+          </section>
+          <div class="bb-docs">
+            <button id="done"><span class="icon icon-settings">Close</span></button>
+          </div>
+        </form>
+      </section>
+
+      <section role="region">
         <header>
           <h1>vCard Importer</h1>
         </header>
-      </section>
-      <div class="bb-docs">
-        <button id="import" class="recommend">Import contacts</button>
-        <div style="width:100%; text-align: center;">  
-            <div id="loading"></div>
+        <div class="bb-docs">
+          <button id="import" class="recommended">Import contacts</button>
         </div>
-      </div>
-
+      </section>
+    
+    <script defer="" type="text/javascript" src="js/view.js"></script>
     <script defer="" type="text/javascript" src="js/engine.js"></script>
   </body>
 </html>

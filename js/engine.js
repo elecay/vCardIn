@@ -9,6 +9,7 @@
 *   -Mozilla FirefoxOS WebAPI/ContactsAPI (https://wiki.mozilla.org/WebAPI/ContactsAPI)
 */
 
+
 (function () {
 
     DEBUG_MODE = true;
@@ -25,6 +26,9 @@
     REGION = 4;
     POSTAL_CODE = 5;
     COUNTRY_NAME = 6;
+
+    porc = $('#porc');
+    progress = $("#progressbar")[0];
 
     if(DEBUG_MODE) {
       // START CLEANING
@@ -55,13 +59,14 @@
       return response;
     }
 
+    function showDoneBtn(){
+      doneBtn = document.querySelector("#done");
+      doneBtn.classList.remove('move-down');
+      doneBtn.classList.add('move-up');
+    }
+
     storage = navigator.getDeviceStorage(SDCARD), 
       contacts_file = storage.get(CONTACTS_FILE_NAME); 
-
-    loader = $("#loading").percentageLoader({
-        width : 200, height : 200, progress : 0, value : 0});
-    loader.setValue(0);
-    loader.setProgress(0.0);
 
     // Importer
     var importer = document.querySelector("#import");
@@ -83,6 +88,8 @@
             var file = contacts_file.result;
             oFReader = new FileReader();
             oFReader.readAsText(file);
+
+
 
             oFReader.onload = function (oFREvent) {
               iteration = 0;
@@ -154,9 +161,11 @@
 
                 request.onsuccess = function() {
                   contactsImported++;
-                  var times = (contactsImported / totalToAdd).toFixed(2);
-                  loader.setValue(contactsImported);
-                  loader.setProgress(times);
+                  var times = ((contactsImported / totalToAdd) * 100).toFixed(0);
+                  porc.text(times + "%");
+                  progress.value = times;
+                  if(contactsImported == totalToAdd)
+                    showDoneBtn();
                 };
 
                 request.onerror = function() {
