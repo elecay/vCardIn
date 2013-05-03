@@ -58,7 +58,8 @@
     storage = navigator.getDeviceStorage(SDCARD), 
       contacts_file = storage.get(CONTACTS_FILE_NAME); 
 
-    loader = $("#loading").percentageLoader();
+    loader = $("#loading").percentageLoader({
+        width : 200, height : 200, progress : 0, value : 0});
     loader.setValue(0);
     loader.setProgress(0.0);
 

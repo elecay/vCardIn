@@ -4,8 +4,9 @@
   "type" : "privileged",
   "launch_path": "/index.html",
   "icons": {
-    "16": "/favicon.png",
-    "128": "/favicon_128.png"
+    "60": "/css/logo_60.png",
+    "128": "/css/logo_128.png",
+    "240": "/css/logo_240.png"
   },
   "developer": {
     "name": "Sebastian Rajo",

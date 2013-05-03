@@ -7,21 +7,26 @@
     <script defer="" type="text/javascript" src="js/jquery.min.js"></script>
     <script defer="" type="text/javascript" src="js/vCard.js"></script>
     <script defer="" type="text/javascript" src="js/jquery.percentageloader-0.1.min.js"></script>
+
+    <link href="css/style.css" rel="stylesheet">
+    <style type="text/css">
+    
+  </style>
   </head>
 
   <body>
-    vCard Importer <br/>
+      <section class="view view-noscroll view-contacts-list" data-state="active" role="region" id="view-contacts-list">
+        <header>
+          <h1>vCard Importer</h1>
+        </header>
+      </section>
+      <div class="bb-docs">
+        <button id="import" class="recommend">Import contacts</button>
+        <div style="width:100%; text-align: center;">  
+            <div id="loading"></div>
+        </div>
+      </div>
 
-    <div id="success" style="float:left;"></div>
-    <div id="error" style="float:left;"></div>
-
-    <div id="run" style="float:left;">
-      <button id="import">Import!</button>
-    </div>
-
-    <div id="loading" style="float:left;"></div>
     <script defer="" type="text/javascript" src="js/engine.js"></script>
   </body>
-
-
 </html>

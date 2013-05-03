@@ -1,0 +1,23 @@
+/*
+  Loading screen while loading contacts
+*/
+
+#loading-overlay.hide {
+  display: none;
+}
+
+.loading-icon {
+  text-align: center;
+}
+
+#progress-msg {
+  padding: 1.5rem 0 1rem 0;
+}
+
+#progressbar {
+  visibility: visible !important;
+}
+
+.no-opacity {
+  opacity: 0;
+}
