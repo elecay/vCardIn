@@ -4,38 +4,76 @@
     <meta charset="utf-8">
     <meta http-equiv="pragma" content="no-cache">
     <title>vCard Importer</title>
-    <script defer="" type="text/javascript" src="js/jquery.min.js"></script>
-    <script defer="" type="text/javascript" src="js/vCard.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/vCard.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/progress_activity.css">
-    <link rel="stylesheet" type="text/css" href="css/confirm.css">
+    <link rel="stylesheet" href="lungo/lungo.css">
+    <link rel="stylesheet" href="lungo/lungo.icon.css">
+    <link rel="stylesheet" href="lungo/lungo.icon.brand.css">
+    <link rel="stylesheet" href="lungo/theme.lungo.css">
   </head>
 
-  <body role="application">
-      <section role="region" id="progress">
-        <form role="dialog" data-type="confirm">
-          <section>
-            <h1>Importing... Please wait...</h1>
-            <p role="status"><span id="porc">0%</span></p>
-            <progress id="progressbar" value="0" max="100"></progress>
-          </section>
-          <div class="bb-docs">
-            <button id="done"><span class="icon icon-settings">Close</span></button>
-          </div>
-        </form>
+  <body class="app">
+      <section role="region" id="main" class="skin-organic" data-transition="fade">
+        <header><h1>vCard Importer</h1></header>
+        <article class="active dark list indented scroll">
+            <ul>
+              <li class="dark">
+                This is a basic tool for importing all your contacts from a </em>.vcf</em> file.
+                Due FirefoxOS right now doesn't allow to pick any file from your SDCARD,
+                the way that this tool works is this:
+              </li>
+              <li class="dark accept">
+                1. Name your .vcf file as <em><strong>contacts.vcf</strong></em>
+              </li>
+              <li class="dark accept">
+                2. Drag and drop the file on your SDCARD. Put it on the root path.
+              </li>
+              <li class="dark accept">
+                3. Unplug your phone from the computer (this is important).
+              </li>
+              <li class="dark accept">
+                4. Press the button <strong>Import contacts</strong> (below).
+              </li>
+              <li class="dark accept">
+                Enjoy!
+              </li>
+            <ul>
+          <ul>
+            <li class="dark">
+              <a href="#progress" id="importBtn" class="button accept" data-router="section">
+                 Import contacts
+              </a>
+              <a href="#" id="deleteAllBtn" class="button cancel" data-router="section">
+                 Delete all contacts
+              </a>
+          <ul>
+        </article>
       </section>
 
-      <section role="region">
-        <header>
-          <h1>vCard Importer</h1>
-        </header>
-        <div class="bb-docs">
-          <button id="import" class="recommended">Import contacts</button>
-        </div>
+      <section role="region" id="progress" data-transition="fade">
+        <article id="main-article" class="active">
+          <form role="dialog" data-type="confirm">
+            <section>
+              <h1>Importing... Please wait...</h1>
+              <p role="status">
+                <span id="porc">0%</span>
+              <progress id="progressbar" value="0" max="100"></progress>
+              </p>
+            </section>
+          </form>
+        </article>
       </section>
     
-    <script defer="" type="text/javascript" src="js/view.js"></script>
-    <script defer="" type="text/javascript" src="js/engine.js"></script>
+    <script type="text/javascript" src="js/engine.js"></script>
+    <script type="text/javascript" src="quojs/quo.js"></script>
+    <script type="text/javascript" src="lungo/lungo.js"></script>
+
+    <SCRIPT>
+        Lungo.init({
+            name: 'example'
+        });
+    </SCRIPT>
   </body>
 </html>

@@ -33,6 +33,7 @@ form[role="dialog"][data-type="confirm"]:before {
 }
 
 form[role="dialog"][data-type="confirm"] > section {
+  margin-top: 100px;
   font-weight: lighter;
   font-size: 2.2rem;
   color: #FAFAFA;

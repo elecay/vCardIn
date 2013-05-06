@@ -4,9 +4,8 @@
   "type" : "privileged",
   "launch_path": "/index.html",
   "icons": {
-    "60": "/css/logo_60.png",
-    "128": "/css/logo_128.png",
-    "240": "/css/logo_240.png"
+    "60": "/css/images/logo_60.png",
+    "128": "/css/images/logo_128.png"
   },
   "developer": {
     "name": "Sebastian Rajo",
@@ -14,7 +13,9 @@
   },
   "permissions": {
     "contacts":{ "access": "readwrite" },
-    "systemXHR": {},
+    "desktop-notification": {
+      "description" : "To show notifications"
+    },
     "device-storage:sdcard": {
       "access": "readonly"
     }

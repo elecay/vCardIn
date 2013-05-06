@@ -65,15 +65,3 @@ p[role="status"] span {
 progress[value].pack-activity.light {
   background-color: #f4f4f4;
 }
-
-
-/* Animations */
-@keyframes rotate {
-  from { transform: rotate(1deg); }
-  to   { transform: rotate(360deg); }
-}
-
-@keyframes move {
-  from { background-position: 0 0; }
-  to   { background-position: 1rem 0; }
-}

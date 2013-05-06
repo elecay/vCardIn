@@ -30,17 +30,38 @@
     porc = $('#porc');
     progress = $("#progressbar")[0];
 
-    if(DEBUG_MODE) {
-      // START CLEANING
-      req = navigator.mozContacts.clear();
-      req.onsuccess = function(){
-        console.log("Contact DB clean");
-      }
-      req.onerror = function(){
-        console.log("Error on delete contacts DB: " + req.error.name);
-      }
-      // END CLEANING
-    }
+    deleteAllBtn = document.querySelector("#deleteAllBtn");
+    deleteAllBtn.addEventListener ('click', function () {
+      Lungo.Notification.confirm({
+        icon: 'user',
+        title: 'Delete all contacts',
+        description: 'With this action you are going to delete all the contacts in your phone',
+        accept: {
+          icon: 'checkmark',
+          label: 'Do it!',
+          callback: function(){
+            req = navigator.mozContacts.clear();
+            req.onsuccess = function(){
+              var notification = navigator.mozNotification.createNotification(
+                "vCard Importer", 
+                "All your contacts has been deleted."
+              );
+              notification.show();
+            }
+            req.onerror = function(){
+              console.log("Error on delete contacts DB: " + req.error.name);
+            }
+          }
+        },
+        cancel: {
+          icon: 'close',
+          label: 'No way!',
+          callback: function(){  }
+        }
+      });
+    });
+
+    navigator.mozContacts.find({});
 
     function extract(person_attribute){
       var response = [];
@@ -59,17 +80,15 @@
       return response;
     }
 
-    function showDoneBtn(){
-      doneBtn = document.querySelector("#done");
-      doneBtn.classList.remove('move-down');
-      doneBtn.classList.add('move-up');
-    }
-
     storage = navigator.getDeviceStorage(SDCARD), 
       contacts_file = storage.get(CONTACTS_FILE_NAME); 
 
+    contacts_file.onerror = function(){
+      $('#importBtn').attr('disabled', true);
+    }
+
     // Importer
-    var importer = document.querySelector("#import");
+    var importer = document.querySelector("#importBtn");
     if (importer) {
         importer.onclick = function() {
 
@@ -89,14 +108,13 @@
             oFReader = new FileReader();
             oFReader.readAsText(file);
 
-
-
             oFReader.onload = function (oFREvent) {
               iteration = 0;
               var arr = vCard.initialize(oFREvent.target.result);
               totalToAdd = arr.length;
 
               for (var i = 0; i < totalToAdd; i++) {
+
                 var contact = new mozContact();
                 var person = arr[i];
 
@@ -164,8 +182,24 @@
                   var times = ((contactsImported / totalToAdd) * 100).toFixed(0);
                   porc.text(times + "%");
                   progress.value = times;
-                  if(contactsImported == totalToAdd)
-                    showDoneBtn();
+
+                  var afterNotification = function(){
+                    var notification = navigator.mozNotification.createNotification(
+                      "vCard Importer", 
+                      contactsImported + " contacts added successfuly."
+                    );
+                    notification.show();
+                    Lungo.Router.section("main");
+                  };
+                  if(contactsImported == totalToAdd) {
+                    Lungo.Notification.success(
+                      "Success",                                              //Title
+                      contactsImported + " contacts added successfuly.",      //Description
+                      "check",                                                //Icon
+                      3,                                                      //Time on screen
+                      afterNotification                                       //Callback function
+                    );
+                  }
                 };
 
                 request.onerror = function() {
