@@ -2,6 +2,7 @@
 //    |            |    A Javascript parser for vCards
 //    |  vCard.js  |    Created by Mattt Thompson, 2008
 //    |____________|    Released under the MIT License
+//                      https://github.com/mattt/vcard.js
 //
 //                      Extended by Sebastián Rajo - @elecay - May/2013
 
@@ -22,9 +23,13 @@ vCard = {
     return result_array;
   },
   parse: function(_input, fields, res_array) {
+
+    SUPPORTED_VERSIONS = ["3.0"];
+
     var regexps = {
       start: /^(BEGIN:VCARD)$/i,
       end: /^(END:VCARD)$/i,
+      version: /^VERSION:/i,
       simple: /^(version|fn|title|org)\:(.+)$/i,
       complex: /^([^\:\;]+);([^\:]+)\:(.+)$/,
       key: /item\d{1,2}\./,
@@ -34,6 +39,14 @@ vCard = {
     var lines = _input.split(/\r?\n/);
     for (n in lines) {
       line = lines[n];
+
+      if(regexps['version'].test(line)) {
+        var thisVersion = line.split(":")[1];
+        if($.inArray(thisVersion, SUPPORTED_VERSIONS) == -1){
+          res_array = [];
+          break;
+        }
+      }
 
       if(regexps['start'].test(line)) {
         fields = {};

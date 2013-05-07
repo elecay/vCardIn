@@ -4,12 +4,17 @@
   "type" : "privileged",
   "launch_path": "/index.html",
   "icons": {
+    "30": "/css/images/logo_30.png",
     "60": "/css/images/logo_60.png",
-    "128": "/css/images/logo_128.png"
+    "16": "/css/images/logo_16.png",
+    "32": "/css/images/logo_32.png",
+    "64": "/css/images/logo_64.png",
+    "128": "/css/images/logo_128.png",
+    "256": "/css/images/logo_256.png"
   },
   "developer": {
     "name": "Sebastian Rajo",
-    "url": "http://www.prottotipo.com/"
+    "url": "http://www.prottotipo.com/vcard"
   },
   "permissions": {
     "contacts":{ "access": "readwrite" },

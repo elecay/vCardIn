@@ -1,14 +1,25 @@
 /**
-* vCard Contacts Importer for FirefoxOS
+* vCard Contacts Importer for FirefoxOS v0.1
 *
-* Created by Sebastián Rajo, May 2013.
-* Released under the MIT License.
+* Copyright Sebastián Rajo 2013.
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see <http://www.gnu.org/licenses/>.
 *
 * References:
 * 
 *   -Mozilla FirefoxOS WebAPI/ContactsAPI (https://wiki.mozilla.org/WebAPI/ContactsAPI)
 */
-
 
 (function () {
 
@@ -35,7 +46,7 @@
       Lungo.Notification.confirm({
         icon: 'user',
         title: 'Delete all contacts',
-        description: 'With this action you are going to delete all the contacts in your phone',
+        description: 'With this action you are going to delete all the contacts in your phone.',
         accept: {
           icon: 'checkmark',
           label: 'Do it!',
@@ -44,7 +55,7 @@
             req.onsuccess = function(){
               var notification = navigator.mozNotification.createNotification(
                 "vCard Importer", 
-                "All your contacts has been deleted."
+                "All your contacts have been deleted."
               );
               notification.show();
             }
@@ -100,6 +111,16 @@
           totalToAdd = 0;
 
           contacts_file.onerror = function() {
+            var afterNotification = function(){
+              Lungo.Router.section("main");
+            };
+            Lungo.Notification.error(
+              "Sorry!",                                                                                   //Title
+              "We can't find a contacts.vcf file in your SDCARD (or you have to unplug your phone).",     //Description
+              "warning",                                                                                  //Icon
+              5,                                                                                          //Time on screen
+              afterNotification                                                                           //Callback function
+            );
             console.error("Error in: ", contacts_file.error.name);
           };
 
@@ -112,6 +133,20 @@
               iteration = 0;
               var arr = vCard.initialize(oFREvent.target.result);
               totalToAdd = arr.length;
+
+              if(totalToAdd == 0){
+                var afterNotification = function(){
+                  Lungo.Router.section("main");
+                };
+                Lungo.Notification.error(
+                  "Sorry!",                                             //Title
+                  "Your vCard file is not supported. vCard 3.0 only.",  //Description
+                  "warning",                                            //Icon
+                  5,                                                    //Time on screen
+                  afterNotification                                     //Callback function
+                );
+
+              }
 
               for (var i = 0; i < totalToAdd; i++) {
 
@@ -186,7 +221,7 @@
                   var afterNotification = function(){
                     var notification = navigator.mozNotification.createNotification(
                       "vCard Importer", 
-                      contactsImported + " contacts added successfuly."
+                      contactsImported + " contacts added successfully."
                     );
                     notification.show();
                     Lungo.Router.section("main");
@@ -194,7 +229,7 @@
                   if(contactsImported == totalToAdd) {
                     Lungo.Notification.success(
                       "Success",                                              //Title
-                      contactsImported + " contacts added successfuly.",      //Description
+                      contactsImported + " contacts added successfully.",      //Description
                       "check",                                                //Icon
                       3,                                                      //Time on screen
                       afterNotification                                       //Callback function

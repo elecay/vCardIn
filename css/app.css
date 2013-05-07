@@ -10,7 +10,6 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-size: 120%!important;
   overflow: hidden;
   position: relative;
 }
@@ -76,7 +75,7 @@ b {
 }
 
 small {
-  font: 2.6rem/1.8rem MozTT, Sans-serif;
+  font: 2.0rem/1.8rem MozTT, Sans-serif;
   color: #999;
 }
 

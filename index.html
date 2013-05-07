@@ -16,27 +16,31 @@
 
   <body class="app">
       <section role="region" id="main" class="skin-organic" data-transition="fade">
-        <header><h1>vCard Importer</h1></header>
+        <header>
+          <menu type="toolbar">
+            <a href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fgithub.com%2Felecay%2FvCardImporter%2F&text=vCard Importer, a %23FirefoxOS app for importing contacts from a .vcf file http%3A%2F%2Fwww.prottotipo.com/vcard via %40elecay" data-icon="brand twitter" target="_blank"></a>
+          </menu>
+          <h1>vCard Importer</h1>
+        </header>
         <article class="active dark list indented scroll">
             <ul>
               <li class="dark">
-                This is a basic tool for importing all your contacts from a </em>.vcf</em> file.
-                Due FirefoxOS right now doesn't allow to pick any file from your SDCARD,
-                the way that this tool works is this:
+                This is a basic tool for importing all your contacts from a .vcf file to your phone.
+                Due to FirefoxOS not allowing you to pick any file from your SDCARD to import, the way that this tool works is this:
               </li>
-              <li class="dark accept">
+              <li class="feature accept">
                 1. Name your .vcf file as <em><strong>contacts.vcf</strong></em>
               </li>
-              <li class="dark accept">
-                2. Drag and drop the file on your SDCARD. Put it on the root path.
+              <li class="feature accept">
+                2. Drag and drop the file onto your SDCARD, putting it in the root path.
               </li>
-              <li class="dark accept">
+              <li class="feature accept">
                 3. Unplug your phone from the computer (this is important).
               </li>
-              <li class="dark accept">
-                4. Press the button <strong>Import contacts</strong> (below).
+              <li class="feature accept">
+                4. Press the button <strong>Import contacts</strong> (see below).
               </li>
-              <li class="dark accept">
+              <li class="feature accept">
                 Enjoy!
               </li>
             <ul>
@@ -72,7 +76,7 @@
 
     <SCRIPT>
         Lungo.init({
-            name: 'example'
+            name: 'vCard'
         });
     </SCRIPT>
   </body>
