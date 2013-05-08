@@ -3,6 +3,8 @@ vCard Importer
 
 A basic FirefoxOS app importer for contacts from a vCard file
 
+https://marketplace.firefox.com/app/vcard-importer (awaiting review) 
+
 This project is just starting.
 
 TODO:
@@ -12,4 +14,4 @@ TODO:
 - ~~Tests (check a valid vCard, version 3.0 only supported right now)~~
 - ~~Refactoring (make the code a little nicer)~~
 - ~~Define a License (MIT? GNU?)~~ GLP 3.0
-- Publishing on Firefox Marketplace (for free, of course)
+- ~~Publishing on Firefox Marketplace (for free, of course)~~
