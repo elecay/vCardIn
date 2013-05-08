@@ -1,6 +1,6 @@
 {
   "name": "vCard Importer",
-  "description": "A basic FirefoxOS app importer for contacts from a vCard file",
+  "description": "A basic FirefoxOS app for importing all your contacts from a vCard file to your phone.",
   "type" : "privileged",
   "launch_path": "/index.html",
   "icons": {
@@ -17,11 +17,15 @@
     "url": "http://www.prottotipo.com/vcard"
   },
   "permissions": {
-    "contacts":{ "access": "readwrite" },
+    "contacts":{
+      "description" : "To create or delete contacts",
+      "access": "readwrite"
+    },
     "desktop-notification": {
-      "description" : "To show notifications"
+      "description" : "To show notifications to the user"
     },
     "device-storage:sdcard": {
+      "description" : "To pick a file from the SDCARD",
       "access": "readonly"
     }
   },
