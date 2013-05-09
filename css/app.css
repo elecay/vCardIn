@@ -1,501 +1,116 @@
-/* ROOT */
-/* Hidden elements */
-.hide, [data-template] {
-  display: none !important;
+@import url(progress_activity.css);
+@import url(confirm.css);
+
+@font-face{
+	font-family:'mozTT';
+	src:url('fonts/MozTT-Bold.ttf');
+	font-weight: 700;
+}
+@font-face{
+	font-family:'mozTT';
+	src:url('fonts/MozTT-Medium.ttf');
+	font-weight: 500;
 }
-
-/* Global */
-html, body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  position: relative;
-}
-
-body {
-  background: #000;
-  color: #fff;
-  font: 1.8rem/2.2rem MozTT, Sans-serif;
-  vertical-align: middle;
-}
-
-/* Text conventions */
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-  padding: 0;
-  font-weight: normal;
-}
-
-ul, ol, dl, dt, dd {
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-}
-
-p, li {
-  word-wrap: break-word;
-  margin: 0;
-  padding: 0;
-}
-
-q {
-  quotes: none;
-  display: block;
-}
-
-pre, blockquote {
-  padding: 0;
-  margin: 0;
-}
-
-em {
-  font-style: italic;
-}
-
-address {
-  font-style: normal;
-  display: inline;
-}
-
-abbr, acronym {
-  cursor: default;
-  border: none;
-}
-
-strong {
-  font-family: MozTT, Sans-serif;
-  font-weight: bold;
-}
-
-b {
-  font-family: MozTT, Sans-serif;
-  font-weight: 600;
-}
-
-small {
-  font: 2.0rem/1.8rem MozTT, Sans-serif;
-  color: #999;
-}
-
-/* Links */
-a {
-  text-decoration: none;
-  outline: none;
-  color: #333;
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-a img {
-  border: none;
-}
-
-a abbr {
-  cursor: pointer;
-}
-
-/* Icons */
-span[role="button"] {
-  font-style: normal;
-}
-
-span[role="button"] + b, span[role="button"] + span {
-  vertical-align: middle;
-}
-
-/* Tables */
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-}
-
-td {
-  vertical-align: top;
-}
-
-caption, th {
-  text-align: left;
-}
-
-caption {
-  text-indent: -9999rem;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-}
-
-/* Forms */
-form {
-  margin: 0;
-}
-
-input:focus, textarea:focus {
-  outline: none;
-}
-
-textarea {
-  resize: none;
-  overflow: auto;
-  height: 4.6rem;
-}
-
-input[type="text"]:focus, textarea:focus {
-  border-color: #7a7a7a;
-}
-
-[contenteditable] {
-  outline: none;
-  word-wrap: break-word;
-}
-
-/* Media */
-img {
-  display: block;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-}
-
-img:-moz-broken {
-  line-height: 1.1rem;
-  overflow: hidden;
-}
-
-/* HTML 5 */
-article, aside, details, figcaption, figure, footer, header, hgroup,
-menu, nav, section, video, audio, canvas, progress, meter, time {
-  display: block;
-  padding: 0;
-  margin: 0;
-}
-
-/* APP */
-/* view */
-
-.view {
-  position: absolute;
-  overflow: hidden;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: translate(0, 0);
-  transition: transform 0.5s ease;
-}
-
-.view:not(.view-noscroll) {
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-.view-right {
-  transform: translateX(100%);
-}
-
-.view-bottom {
-  transform: translateY(100%);
-}
-
-
-/* BB Header redefinition
-    This avoids full repainting on scroll in the contacts lists
-    We must fill a bug with this issue
- */
-section[role="region"] > header:first-child {
-  background-color: #cd6623;
-}
-
-/* Rewritting from buttons.css */
-section[role="region"] > header:first-child button,
-section[role="region"] > header:first-child a[role="button"] {
-  white-space: normal;
-}
-
-/* Buttons inside list redefinition */
-li button span,
-li a[role="button"] span {
-  font-size: 0;
-}
-
-/* Extending BB list buttons (Activity ones) */
-li button.activity,
-li a[role="button"].activity {
-  background-color: #fff;
-  padding: 0 1rem 0 0;
-}
-
-li button.activity:active,
-li a[role="button"].activity:active {
-  background-color: #008AAA;
-}
-
-/* Icons at left side */
-li button.activity.icon,
-li a[role="button"].activity.icon {
-  padding-left: 3rem;
-}
-
-li button.activity.icon,
-li a[role="button"].activity.icon {
-  text-indent: 1rem;
-}
-
-li button.activity:before,
-li a[role="button"].activity:before {
-  right: auto;
-  left: 0.5rem;
-}
-
-/* Extending components */
-li button.activity > b em ,
-li a[role="button"].activity > b em{
-  color: #727272;
-  font-style: normal;
-}
-
-/* Long strings (email) */
-li button.activity > b ,
-li a[role="button"].activity > b{
-  font-weight: normal;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;;
-  display: block;
-  position: absolute;
-  left: 3rem;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-
-/* BB Lists extending */
-[data-type="list"] header {
-  margin-left: -1rem;
-}
-
-/* JS helper */
-[data-type="list"] li p,
-[data-type="list"] li aside {
-  pointer-events: none;
-}
-
-/* Input areas customization*/
-form p + p {
-  margin-top: 0.5rem;
-}
-
-/* Body */
-.view-body {
-  position: relative;
-  height: calc(100% - 5rem);
-}
-
-.view-body-inner {
-  overflow-x: hidden;
-  overflow-y: auto;
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 5;
-  width: 100%;
-  -moz-box-sizing: border-box;
-  padding: 1.4rem 2rem;
-  background: #f4f4f4;
-  color: #333;
-  text-align: left;
-}
-
-/* Removes scroll from the view body inner */
-.view-noscroll .view-body-inner {
-  width: -moz-calc(100% + 0.8rem);
-}
-
-
-/* LAYOUT */
-/* ITEM: The smallest complete structure; */
-.item {
-  display: block;
-  overflow: hidden;
-}
-
-.item-media {
-  float: left;
-  margin-right: 1rem;
+@font-face{
+	font-family:'mozTT';
+	src:url('fonts/MozTT-Regular.ttf');
+	font-weight: 300;
 }
-
-.item-media.pull-right {
-  margin-left: 1rem;
-  margin-right: 0;
-}
-
-.item-body {
-  display: table;
-}
-
-.item-body-exp {
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* PULLS: Float an element to the desired position; */
-.pull-right {
-  float: right;
-}
-
-.pull-left {
-  float: left;
-}
-
-/* STACK: inline block list items; */
-.stack {
-  letter-spacing: -0.4rem;
-  text-align: center;
-}
-
-.stack > li {
-  display: inline-block;
-  vertical-align: middle;
-  letter-spacing: 0;
-}
-
-/* ICONS */
-
-span[role="button"] {
-  font: 0/0 a;
-  background: transparent no-repeat center center;
-  background-size: 100% auto;
-  display: inline-block;
-}
-
-span[role="button"].icon-finish {
-  background-color: rgba(0, 0, 0, 0.5);
+@font-face{
+	font-family:'mozTT';
+	src:url('fonts/MozTT-Light.ttf');
+	font-weight: 100;
 }
-
-/* selection list */
-span[role="button"].icon-selected {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-/* tabs */
-span[role="button"].icon-profile {
-  background-color: rgba(255, 255, 255, 0.5)
+@media screen and (orientation:portrait) {
+	html{
+		font-size: 5vw!important;
+	}
 }
-
-/* navigation */
-span[role="button"].icon-log {
-  background-color: rgba(255, 255, 255, 0.5);
+@media screen and (orientation:landscape) {
+	html{
+		font-size: 5vh!important;
+	}
 }
-
-span[role="button"].icon-contacts {
-  background-color: rgba(255, 255, 255, 0.5);
+@media only screen and (min-resolution: 90dpi) and (min-width: 540px){
+	html{
+		font-size: 150%!important;
+	}
 }
-
-span[role="button"].icon-messages {
-  background-color: rgba(255, 255, 255, 0.5);
+body *{
+	font-family: MozTT, Open Sans, Ubuntu, Droid Sans, Roboto, Sans;
+	font-weight: 200;
+	letter-spacing: -0.05em;
 }
-
-span[role="button"].icon-grid {
-  background-color: rgba(255, 255, 255, 0.5);
+a{
+	color: inherit;
 }
 
-/* arrows */
-span[role="button"].icon-arrow {
-  border: solid 0.4rem transparent;
-  width: 0;
-  height: 0;
+button{
+	height: 2.4rem;
+	font-size: 1rem!important;
+	line-height: 1rem;
+	background-color: #D45500!important;
 }
-
-span[role="button"].icon-arrow.icon-arrow-top {
-  margin-top: -0.4rem;
-  border-bottom-color: #333;
+button::-moz-focus-inner{
+	border: 0;
 }
-
-span[role="button"].icon-arrow.icon-arrow-bottom {
-  margin-top: 0.4rem;
-  border-top-color: #333;
+body > section > header{
+	height: 3rem;
+	box-shadow: none;
+	background: url("headers/images/ui/header.png") repeat-x scroll 0 0 / auto 100% transparent;
+	box-shadow: 0 0 .5rem #333;
+	z-index: 2;
 }
-
-span[role="button"].icon-arrow.icon-arrow-left {
-  margin-right: 0.4rem;
-  border-right-color: #333;
+body > section > header > span.title{
+	text-align: left!important;
+	left: .3rem!important;
+	font-size: 1.5rem;
+	line-height: 1.5rem;
+	top: .8rem;
 }
-
-span[role="button"].icon-arrow.icon-arrow-right {
-  margin-left: 0.4rem;
-  border-left-color: #333;
+body > section > header > nav a{
+	height: 3rem!important;
+	width: 2rem;
+	color: #FFF!important;
+	text-shadow: none!important;
+	line-height: 3rem!important;
+	text-align: center;
 }
-
-/* Block type (long text) */
-.action-block {
-  height: auto;
-  min-height: 4rem;
-  word-wrap: normal;
-}
-.action-block span[role="button"] {
-  float: left;
-  display: inline;
-}
-.action-block b {
-  display: block;
-  overflow: hidden;
-  line-height: 1.4em;
-}
-.action-block span {
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
+body > section > header > nav a.active{
+	background-color: rgba(255, 255, 255, .2);
 }
-
-/* FILL FLOW: general components for helping in defining basic flows in forms; */
-.fill-flow {
-  padding-right: 0;
+body > section > header > nav a img{
+	width: 1.4rem;
 }
-
-/* ROW: horizontal separation for elements; */
-.fillflow-row {
-  margin: 0 0 0.5rem;
-  position: relative;
+body > section > header > nav a.left{
+	width: 1.2rem!important;
+	padding: 0 .2rem!important;
+	background-color: rgba(0, 0, 0, .1);
 }
-
-.fillflow-left {
-  margin-right: 0.7rem;
+body > section > header > nav a.left span{
+	font-size: 1rem!important;
 }
-
-.fillflow-twocols {
-  overflow: hidden;
+#main-article{
+	top: 3rem!important;
 }
 
-.fillflow-twocols button {
-  width: calc(50% - 0.5rem);
-  float: left;
+span.icon.brand.twitter {
+	font-size: 200%;
 }
 
-.fillflow-twocols button:last-child {
-  float: right;
+li, small {
+	font-size: 150%!important;
+	line-height: 1em!important;
 }
-
-
-/* JUMPER */
 
-nav[data-type="scrollbar"] {
-  z-index: 6;
+.button.anchor {
+	width: 70%!important;
 }
 
-nav[data-type="scrollbar"] ol > li > * {
-  pointer-events: none;
+h1 {
+	font-size: 50%!important;
 }
 
-nav[data-type="scrollbar"] p img {
-  position: absolute;
-  top: 25%;
-  left: 25%;
-  width: auto;
+#progress {
+	top: 0!important;
 }

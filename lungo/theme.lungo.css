@@ -6,7 +6,16 @@
  *
  * @author Javier Jimenez Villar <javi@tapquo.com> || @soyjavi
  */
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
 /* -------------------------- THEME -------------------------- */
+body {
+  background-color: #222;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.3em;
+  letter-spacing: -0.05em;
+}
 .theme,
 li.theme,
 a.theme {
@@ -24,7 +33,7 @@ a.theme:active {
   text-shadow: 0 1px 0 #fff;
 }
 /* -------------------------- LAYOUT COLORS -------------------------- */
-section >  {
+section > header {
   background-color: #0093d5;
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.25), inset 0 1px 0 #03b1ff, inset 0 -1px 0 #007db5;
   -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.25), inset 0 1px 0 #03b1ff, inset 0 -1px 0 #007db5;
@@ -64,23 +73,23 @@ aside {
   background-color: #1d1d1d;
   color: #fff;
 }
-aside > ,
+aside > header,
 aside > footer {
   background-color: #181818;
 }
-aside >  {
+aside > header {
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.25), inset 0 1px 0 #222, inset 0 -1px 0 #141414;
   -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.25), inset 0 1px 0 #222, inset 0 -1px 0 #141414;
   box-shadow: 0 1px 3px rgba(0,0,0,0.25), inset 0 1px 0 #222, inset 0 -1px 0 #141414;
 }
 /* -------------------------- NAVIGATION -------------------------- */
-section >  > nav a:not(.button) {
+section > header > nav a:not(.button) {
   color: #00608a;
   -webkit-text-shadow: 0 1px 0 #20baff;
   -moz-text-shadow: 0 1px 0 #20baff;
   text-shadow: 0 1px 0 #20baff;
 }
-section >  > nav a:not(.button):active {
+section > header > nav a:not(.button):active {
   color: #004a6b;
 }
 section > nav.groupbar > a.active {
@@ -234,7 +243,7 @@ aside .list li .icon {
 .tag:not(.icon).count {
   background-color: #0093d5;
 }
-.tag:not(.icon)  .count {
+.tag:not(.icon) header .count {
   background-color: THEME-dark !important;
 }
 footer .tag:not(.icon) {
@@ -278,8 +287,8 @@ footer .tag:not(.icon) {
   color: #fff;
 }
 /* -------------------------- BUTTONS -------------------------- */
- .button,
- button {
+header .button,
+header button {
   background-color: #007db5;
   -webkit-box-shadow: 0 1px 0 #03b1ff, inset 0 1px 0 #00608a;
   -moz-box-shadow: 0 1px 0 #03b1ff, inset 0 1px 0 #00608a;
@@ -288,8 +297,8 @@ footer .tag:not(.icon) {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
- .button:active,
- button:active {
+header .button:active,
+header button:active {
   background-color: #005880;
 }
 article .button,

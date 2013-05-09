@@ -7,7 +7,7 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/vCard.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="lungo/lungo.css">
     <link rel="stylesheet" href="lungo/lungo.icon.css">
     <link rel="stylesheet" href="lungo/lungo.icon.brand.css">
@@ -15,35 +15,34 @@
   </head>
 
   <body class="app">
-      <section role="region" id="main" class="skin-organic" data-transition="fade">
-        <header>
-          <menu type="toolbar">
-            <a href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fgithub.com%2Felecay%2FvCardImporter%2F&text=vCard Importer, a %23FirefoxOS app for importing contacts from a .vcf file http%3A%2F%2Fwww.prottotipo.com/vcard via %40elecay" data-icon="brand twitter" target="_blank"></a>
-          </menu>
-          <h1>vCard Importer</h1>
+      <section id="main" data-transition="fade">
+        <header data-title="vCard Importer">
+          <nav>
+              <a href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fgithub.com%2Felecay%2FvCardImporter%2F&text=vCard Importer, a %23FirefoxOS app for importing contacts from a .vcf file http%3A%2F%2Fwww.prottotipo.com/vcard via %40elecay" data-icon="brand twitter" class="right" target="_blank"></a>
+          </nav>
         </header>
-        <article class="active dark list indented scroll">
-            <ul>
-              <li class="dark">
-                This is a basic tool for importing all your contacts from a .vcf file to your phone.
-                Due to FirefoxOS not allowing you to pick any file from your SDCARD to import, the way that this tool works is this:
-              </li>
-              <li class="feature accept">
-                1. Name your .vcf file as <em><strong>contacts.vcf</strong></em>
-              </li>
-              <li class="feature accept">
-                2. Drag and drop the file onto your SDCARD, putting it in the root path.
-              </li>
-              <li class="feature accept">
-                3. Unplug your phone from the computer (this is important).
-              </li>
-              <li class="feature accept">
-                4. Press the button <strong>Import contacts</strong> (see below).
-              </li>
-              <li class="feature accept">
-                Enjoy!
-              </li>
-            <ul>
+        <article id="main-article" class="active dark list indented scroll">
+          <ul>
+            <li class="dark">
+              This is a basic tool for importing all your contacts from a .vcf file to your phone.
+              Due to FirefoxOS not allowing you to pick any file from your SDCARD to import, the way that this tool works is this:
+            </li>
+            <li class="feature accept">
+              1. Name your .vcf file as <em><strong>contacts.vcf</strong></em>
+            </li>
+            <li class="feature accept">
+              2. Drag and drop the file onto your SDCARD, putting it in the root path.
+            </li>
+            <li class="feature accept">
+              3. Unplug your phone from the computer (this is important).
+            </li>
+            <li class="feature accept">
+              4. Press the button <strong>Import contacts</strong> (see below).
+            </li>
+            <li class="feature accept">
+              Enjoy!
+            </li>
+          </ul>
           <ul>
             <li class="dark">
               <a href="#progress" id="importBtn" class="button accept" data-router="section">
@@ -52,12 +51,13 @@
               <a href="#" id="deleteAllBtn" class="button cancel" data-router="section">
                  Delete all contacts
               </a>
-          <ul>
+            </li>
+          </ul>
         </article>
       </section>
 
       <section role="region" id="progress" data-transition="fade">
-        <article id="main-article" class="active">
+        <article id="progress-article" class="active">
           <form role="dialog" data-type="confirm">
             <section>
               <h1>Importing... Please wait...</h1>

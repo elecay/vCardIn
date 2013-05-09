@@ -106,6 +106,7 @@
           storage = navigator.getDeviceStorage(SDCARD), 
             contacts_file = storage.get(CONTACTS_FILE_NAME); 
 
+
           contactsImported = 0;
           contactsError = 0;
           totalToAdd = 0;
@@ -229,7 +230,7 @@
                   if(contactsImported == totalToAdd) {
                     Lungo.Notification.success(
                       "Success",                                              //Title
-                      contactsImported + " contacts added successfully.",      //Description
+                      contactsImported + " contacts added successfully.",     //Description
                       "check",                                                //Icon
                       3,                                                      //Time on screen
                       afterNotification                                       //Callback function
