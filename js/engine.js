@@ -1,5 +1,5 @@
 /**
-* vCard Contacts Importer for FirefoxOS v0.1
+* vCardIn for FirefoxOS v0.1
 *
 * Copyright Sebastián Rajo 2013.
 *
@@ -81,7 +81,7 @@
         } else {
           if(flagOk){
             flagOk = false;
-            $("#main-article").prepend('<ul><li id="pickvCard" class="dark">Please, pick one or more files to import.</li></ul>');
+            $("#item-list").prepend('<li id="pickvCard" class="dark">Please, pick one or more files to import.</li>');
             $("#addvCard").remove();
           }
           $('#importSelectedBtn').removeClass('disabled');
