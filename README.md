@@ -1,9 +1,9 @@
-vCard Importer
-==============
+vCardIn
+=======
 
 A basic FirefoxOS app importer for contacts from a vCard file
 
-https://marketplace.firefox.com/app/vcard-importer (awaiting review) 
+https://marketplace.firefox.com/app/vcardin (awaiting review) 
 
 This project is just starting.
 

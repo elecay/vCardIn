@@ -19,35 +19,19 @@
         <header data-title="vCard Importer">
           <nav>
               <a href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fgithub.com%2Felecay%2FvCardImporter%2F&text=vCard Importer, a %23FirefoxOS app for importing contacts from a .vcf file http%3A%2F%2Fwww.prottotipo.com/vcard via %40elecay" data-icon="brand twitter" class="right" target="_blank"></a>
+              <a href="#" id="refreshBtn" data-icon="refresh" class="right"></a>
           </nav>
         </header>
-        <article id="main-article" class="active dark list indented scroll">
+        <article id="main-article" data-type="list" class="active dark list indented scroll">
+          
+          <ul id="item-list"></ul>
           <ul>
             <li class="dark">
-              This is a basic tool for importing all your contacts from a .vcf file to your phone.
-              Due to FirefoxOS not allowing you to pick any file from your SDCARD to import, the way that this tool works is this:
-            </li>
-            <li class="feature accept">
-              1. Name your .vcf file as <em><strong>contacts.vcf</strong></em>
-            </li>
-            <li class="feature accept">
-              2. Drag and drop the file onto your SDCARD, putting it in the root path.
-            </li>
-            <li class="feature accept">
-              3. Unplug your phone from the computer (this is important).
-            </li>
-            <li class="feature accept">
-              4. Press the button <strong>Import contacts</strong> (see below).
-            </li>
-            <li class="feature accept">
-              Enjoy!
-            </li>
-          </ul>
-          <ul>
-            <li class="dark">
-              <a href="#progress" id="importBtn" class="button accept" data-router="section">
-                 Import contacts
+              <a href="#" id="importSelectedBtn" class="button accept">
+                 Import selected
               </a>
+            </li>
+            <li class="dark">
               <a href="#" id="deleteAllBtn" class="button cancel" data-router="section">
                  Delete all contacts
               </a>

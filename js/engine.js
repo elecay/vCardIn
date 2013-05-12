@@ -25,7 +25,6 @@
 
     DEBUG_MODE = true;
     SDCARD = "sdcard";
-    CONTACTS_FILE_NAME = "contacts.vcf";
 
     /*
      * According to RFC-2426 (http://www.ietf.org/rfc/rfc2426.txt)
@@ -40,6 +39,68 @@
 
     porc = $('#porc');
     progress = $("#progressbar")[0];
+    filesToImport = [];
+
+    storage = navigator.getDeviceStorage(SDCARD);
+    navigator.mozContacts.find({});
+
+    refreshBtn = document.querySelector("#refreshBtn");
+    refreshBtn.addEventListener ('click', function () {
+      load();
+    });
+
+    load();
+
+    function load(){
+
+      importSelectedBtn = document.querySelector("#importSelectedBtn");
+      $('#item-list li').remove();
+
+      var all_files = storage.enumerate(""); 
+      flagError = true;
+      flagOk = true;
+      all_files.onsuccess = function() {
+        while (all_files.result)  {
+           var each_file = all_files.result;
+          // If this is a vCard
+          if (each_file.name.match(/.vcf$/)) { 
+            $("#item-list").append('<li><label><input type="checkbox"><span></span>'
+              + '</label>' + each_file.name + '</li>');
+          }
+          all_files.continue(); 
+        }
+        
+        if($('input[type="checkbox"]').size() == 0){
+          if(flagError) {
+            $("#item-list").append('<li id="addvCard">Please, add a vCard file in your SDCARD, UNPLUG your phone and refresh.</li>');
+            $('#importSelectedBtn').removeClass('accept');
+            $('#importSelectedBtn').addClass('disabled');
+            $("#pickvCard").remove();
+            flagError = false;
+          }
+        } else {
+          if(flagOk){
+            flagOk = false;
+            $("#main-article").prepend('<ul><li id="pickvCard" class="dark">Please, pick one or more files to import.</li></ul>');
+            $("#addvCard").remove();
+          }
+          $('#importSelectedBtn').removeClass('disabled');
+          $('#importSelectedBtn').addClass('accept');
+          importSelectedBtn.addEventListener('click', function () {
+            Lungo.Router.section("progress");
+            var filesToImport = $('input[type="checkbox"]:checked').map(function() {
+              return $(this).parent().parent().text();
+            }).get();
+            importFiles(filesToImport, 0, 0);
+          });
+        }
+      };
+
+      all_files.onerror = function(){
+        $('#importSelectedBtn').removeClass('accept');
+        $('#importSelectedBtn').addClass('disabled');
+      }
+    }
 
     deleteAllBtn = document.querySelector("#deleteAllBtn");
     deleteAllBtn.addEventListener ('click', function () {
@@ -72,8 +133,6 @@
       });
     });
 
-    navigator.mozContacts.find({});
-
     function extract(person_attribute){
       var response = [];
       for(type in person_attribute) {
@@ -91,22 +150,10 @@
       return response;
     }
 
-    storage = navigator.getDeviceStorage(SDCARD), 
-      contacts_file = storage.get(CONTACTS_FILE_NAME); 
+    function importFiles(filesToImport, pos, totalAdded) {
 
-    contacts_file.onerror = function(){
-      $('#importBtn').attr('disabled', true);
-    }
-
-    // Importer
-    var importer = document.querySelector("#importBtn");
-    if (importer) {
-        importer.onclick = function() {
-
-          storage = navigator.getDeviceStorage(SDCARD), 
-            contacts_file = storage.get(CONTACTS_FILE_NAME); 
-
-
+      if(pos < filesToImport.length){
+          contacts_file = storage.get(filesToImport[pos]); 
           contactsImported = 0;
           contactsError = 0;
           totalToAdd = 0;
@@ -117,7 +164,7 @@
             };
             Lungo.Notification.error(
               "Sorry!",                                                                                   //Title
-              "We can't find a contacts.vcf file in your SDCARD (or you have to unplug your phone).",     //Description
+              "We can't find a vCard file in your SDCARD (or you have to unplug your phone).",            //Description
               "warning",                                                                                  //Icon
               5,                                                                                          //Time on screen
               afterNotification                                                                           //Callback function
@@ -126,7 +173,7 @@
           };
 
           contacts_file.onsuccess = function() { 
-            var file = contacts_file.result;
+            file = contacts_file.result;
             oFReader = new FileReader();
             oFReader.readAsText(file);
 
@@ -216,35 +263,54 @@
                 request.onsuccess = function() {
                   contactsImported++;
                   var times = ((contactsImported / totalToAdd) * 100).toFixed(0);
-                  porc.text(times + "%");
+                  porc.text(times + "% for file " + (pos + 1));
                   progress.value = times;
 
-                  var afterNotification = function(){
-                    var notification = navigator.mozNotification.createNotification(
-                      "vCard Importer", 
-                      contactsImported + " contacts added successfully."
-                    );
-                    notification.show();
-                    Lungo.Router.section("main");
-                  };
-                  if(contactsImported == totalToAdd) {
-                    Lungo.Notification.success(
-                      "Success",                                              //Title
-                      contactsImported + " contacts added successfully.",     //Description
-                      "check",                                                //Icon
-                      3,                                                      //Time on screen
-                      afterNotification                                       //Callback function
-                    );
+                  if(contactsImported == totalToAdd){
+                    importFiles(filesToImport, pos + 1, totalAdded + contactsImported);
                   }
+                  
                 };
 
                 request.onerror = function() {
                   contactsError++;
                   console.log("ERROR on saving contact: " + request.error.name);
                 };
+
               }
-            }
+            };
           };
+
+      }
+      else if (pos > 0) {
+        var afterNotification = function(){
+          var notification = navigator.mozNotification.createNotification(
+            "vCard Importer", 
+            totalAdded + " contacts added successfully."
+          );
+          notification.show();
+          Lungo.Router.section("main");
         };
+        Lungo.Notification.success(
+          "Success",                                              //Title
+          totalAdded + " contacts added successfully.",           //Description
+          "check",                                                //Icon
+          3,                                                      //Time on screen
+          afterNotification                                       //Callback function
+        );
+
+      } else {
+        var afterNotification = function(){
+          Lungo.Router.section("main");
+        };
+        Lungo.Notification.error(
+          "Error",                                          //Title
+          "Please, pick at least one file to import.",      //Description
+          "warning",                                        //Icon
+          3,                                                //Time on screen
+          afterNotification                                 //Callback function
+        );
+      }
     }
+
 })();

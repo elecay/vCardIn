@@ -1,5 +1,6 @@
 @import url(progress_activity.css);
 @import url(confirm.css);
+@import url(switches.css);
 
 @font-face{
 	font-family:'mozTT';
@@ -31,9 +32,25 @@
 		font-size: 5vh!important;
 	}
 }
-@media only screen and (min-resolution: 90dpi) and (min-width: 540px){
+@media only screen and (min-resolution: 90dpi) and (min-width: 530px){
 	html{
 		font-size: 150%!important;
+	}
+	li, small {
+		font-size: 100%!important;
+	}
+	button{
+		height: 3rem;
+		line-height: 1.5rem;
+	}
+}
+@media only screen and (min-resolution: 90dpi) and (max-width: 530px){
+	li, small{
+		font-size: 90%!important;
+	}
+	button{
+		height: 2.4rem;
+		line-height: 1rem;
 	}
 }
 body *{
@@ -46,9 +63,6 @@ a{
 }
 
 button{
-	height: 2.4rem;
-	font-size: 1rem!important;
-	line-height: 1rem;
 	background-color: #D45500!important;
 }
 button::-moz-focus-inner{
@@ -94,12 +108,11 @@ body > section > header > nav a.left span{
 	top: 3rem!important;
 }
 
-span.icon.brand.twitter {
-	font-size: 200%;
+span.icon.brand.twitter, span.icon.refresh {
+	font-size: 100%!important;
 }
 
 li, small {
-	font-size: 150%!important;
 	line-height: 1em!important;
 }
 
@@ -113,4 +126,36 @@ h1 {
 
 #progress {
 	top: 0!important;
+}
+
+#item-delete-dialog {
+  display:none;
+}
+
+.item-list-scrollouter {
+  height: calc(100% - 5rem);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+ 
+.item-list-scrollouter label {
+  display: none;
+}
+ 
+.item-list-scrollouter-edit {
+  height: calc(100% - 11.5rem);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+ 
+.item-list-scrollouter-edit label {
+  display: inline-block;
+}
+
+#main-wrapper, #item-list-panel {
+  height: 100%;
+}
+
+#li label {
+	font-size: 10px!important;
 }
