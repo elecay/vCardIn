@@ -115,7 +115,7 @@
             req = navigator.mozContacts.clear();
             req.onsuccess = function(){
               var notification = navigator.mozNotification.createNotification(
-                "vCard Importer", 
+                "vCardIn", 
                 "All your contacts have been deleted."
               );
               notification.show();
@@ -285,7 +285,7 @@
       else if (pos > 0) {
         var afterNotification = function(){
           var notification = navigator.mozNotification.createNotification(
-            "vCard Importer", 
+            "vCardIn", 
             totalAdded + " contacts added successfully."
           );
           notification.show();
