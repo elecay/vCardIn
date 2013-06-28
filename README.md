@@ -5,7 +5,11 @@ Firefox MarketPlace: [https://marketplace.firefox.com/app/vCardIn](https://marke
 
 <p align="center">
 
+<<<<<<< HEAD
 <img src="https://github.com/elecay/vCardIn/blob/master/screenshots/all.png?raw=true">
+=======
+<img src="https://github.com/elecay/vCardIn/blob/master/screenshots/2013-05-12-06-13-29.png?raw=true" style="max-width:70%!important;">
+>>>>>>> d144327c4962f490316ef1ddfc3abfbdf89c736d
 <br><em>Screenshot on a Peak Geeksphone</em>
 
 </p>
