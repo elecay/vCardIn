@@ -5,8 +5,8 @@ Firefox MarketPlace: [https://marketplace.firefox.com/app/vCardIn](https://marke
 
 <p align="center">
 
-<img src="https://github.com/elecay/vCardIn/blob/master/screenshots/2013-05-12-06-13-29.png?raw=true">
-<br><em>Screenshot on a Keon Geeksphone</em>
+<img src="https://github.com/elecay/vCardIn/blob/master/screenshots/2013-05-12-06-13-29.png?raw=true" style="width: 70%;">
+<br><em>Screenshot on a Peak Geeksphone</em>
 
 </p>
 
