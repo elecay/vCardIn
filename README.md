@@ -3,9 +3,14 @@ vCardIn
 
 Firefox MarketPlace: [https://marketplace.firefox.com/app/vCardIn](https://marketplace.firefox.com/app/vCardIn)
 
-A basic FirefoxOS app importer for contacts from a vCard file
+<p align="center">
 
-https://marketplace.firefox.com/app/vcardin (awaiting review) 
+<img src="https://github.com/elecay/vCardIn/blob/master/screenshots/2013-05-12-06-13-29.png?raw=true">
+<br><em>Screenshot on a Keon Geeksphone</em>
+
+</p>
+
+A basic FirefoxOS app importer for contacts from a vCard file
 
 This project is just starting.
 
